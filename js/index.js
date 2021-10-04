@@ -1,7 +1,8 @@
-const persons =document.getElementById('persons');
-const starships = document.getElementById('starships');
-const planets = document.getElementById('planets');
+// const persons =document.getElementById('persons');
+// const starships = document.getElementById('starships');
+// const planets = document.getElementById('planets');
 let peopleList = [];
+
 
 fillCounters();
 
@@ -19,6 +20,7 @@ function fillCounters() {
 
         peopleList=data[0].results;
 
+
         persons.innerHTML = data[0].count;      //mostrar na tela
         starships.innerHTML = data[1].count;
         planets.innerHTML = data[2].count;
@@ -33,11 +35,13 @@ function getData(param) {
   };
 
   function loadPerson() {
-    const phrase = document.getElementById('phrase');
+    // const phrase = document.getElementById('phrase');
 
     const person = peopleList[Math.floor(Math.random() * peopleList.length)]; //Math.random(peopleList.length -1)]
 
-    phrase.innerHTML = person.name;
+
+    phrase.innerHTML = person.name + "<br> age: " + person.birth_year;
+
     
     phrase.animate([
       { transform: 'translateY(-70px)'},
@@ -48,23 +52,25 @@ function getData(param) {
   }
 
 
-//função para carregar uma frase
-function loadPhrase() {
-    const btn = document.getElementById('btn-phrases');
-    const phrase = document.getElementById('phrase');
+
+
+// //função para carregar uma frase
+// function loadPhrase() {
+//     const btn = document.getElementById('btn-phrases');
+//     const phrase = document.getElementById('phrase');
   
-    return fetch('https://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote')
-          .then(data => data.json())
-          .then(json => {
-            btn.innerHTML = 'Ver mais uma frase!';
-            phrase.innerHTML = `"${json.content}"`;
+//     return fetch('https://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote')
+//           .then(data => data.json())
+//           .then(json => {
+//             btn.innerHTML = 'Ver mais uma frase!';
+//             phrase.innerHTML = `"${json.content}"`;
   
-            phrase.animate([
-              { transform: 'translateY(-70px)'},
-              { transform: 'translateY(0px)'}
-            ], {
-              duration: 500
-            })
-          })
-          .catch(err => console.log('Erro: ', err))
-  };
+//             phrase.animate([
+//               { transform: 'translateY(-70px)'},
+//               { transform: 'translateY(0px)'}
+//             ], {
+//               duration: 500
+//             })
+//           })
+//           .catch(err => console.log('Erro: ', err))
+//   };
